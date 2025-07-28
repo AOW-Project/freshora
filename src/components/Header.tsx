@@ -5,14 +5,21 @@ import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { FaGift, FaAngleDown } from "react-icons/fa";
+import { title } from "process";
 
 const RequestQuoteModal = dynamic(() => import("./RequestQuoteModal"), { ssr: false });
 
 const serviceMenuItems = [
-    { title: "Wash & Fold", href: "/services/wash-fold" },
-    { title: "Dry Cleaning", href: "/services/dry-cleaning" },
-    { title: "Wash & Iron", href: "/services/wash-iron" },
-    { title: "Ironing Services", href: "/services/ironing" },
+    { title: "Laundry Service", href: "/services/laundry-service" },
+    { title: "Dry Cleaning Service", href: "/services/dry-cleaning-service" },
+    { title: "Express Laundry Services", href: "/services/express-laundry-services" },
+    { title: "Bag & Shoe Spa", href: "/services/bag-shoe-spa" },
+    { title: "Luxury Shoe Cleaning Service", href: "/services/luxury-shoe-cleaning-service" },
+    { title: "Commercial Laundry Service", href: "/services/commercial-laundry-service" },
+    { title: "Carpet Cleaning Service", href: "/services/carpet-cleaning-service" },
+    { title: "Curtain Cleaning Service", href: "/services/curtain-cleaning-service" },
+    
+    { title: "Soft Toy Cleaning Service", href: "/services/soft-toy-cleaning-service" },
 ];
 
 export default function Header() {

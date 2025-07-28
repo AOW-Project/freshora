@@ -9,17 +9,22 @@ const RequestQuoteModal = dynamic(() => import("./RequestQuoteModal"), { ssr: fa
 
 const slides = [
   {
-    image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1200&q=80",
+    image: "/female-doing-laundry-at-laundromat-2024-10-12-00-02-41-utc.jpg",
     headline: "Dirty Wash Cleaning & Laundry Services.",
     subheadline: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.",
     badge: true,
   },
   {
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
+    image: "/senior-washwoman-in-the-laundry-2025-03-13-03-42-00-utc.jpg",
     headline: "Fast, Affordable, and Convenient.",
     subheadline: "We pick up, clean, and deliver your laundry with care. Book your first order and get 20% cashback!",
     badge: true,
   },
+  { image:"/woman-in-the-laundry-shop-2025-01-29-04-35-51-utc.jpg",
+    headline: "Your Laundry, Our Priority.",
+    subheadline: "Experience the best in laundry services with our expert team. Satisfaction guaranteed!",
+    badge: true,
+  }
 ];
 
 export default function HeroSection() {
@@ -49,20 +54,20 @@ export default function HeroSection() {
         alt="Laundry Hero"
         fill
         style={{
-          objectFit: 'cover',
+          objectFit: 'fill',
           zIndex: 1,
           filter: 'brightness(0.55) blur(1.5px)', // subtle blur for focus
         }}
       />
       {/* Overlay gradient */}
-      <div
+    { /* <div
         style={{
           position: 'absolute',
           inset: 0,
           zIndex: 2,
           background: 'linear-gradient(90deg, #1e293bcc 40%, #0000 100%)',
         }}
-      />
+      />*/}
       {/* Overlay content */}
       <div
         style={{

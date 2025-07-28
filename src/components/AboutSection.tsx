@@ -18,7 +18,7 @@ export default function AboutSection() {
         {/* Image Section */}
         <div style={{ flex: 1, minWidth: 300 }}>
           <Image 
-            src="https://placehold.co/600x400/e2e8f0/334155?text=Our+Story" 
+            src="/young-beautiful-indian-muslim-businesswoman-with-a-2025-01-29-03-34-36-utc.jpg" 
             alt="Freshora Laundry Service" 
             width={600} 
             height={400} 
