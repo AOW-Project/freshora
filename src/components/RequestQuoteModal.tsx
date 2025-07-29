@@ -21,10 +21,17 @@ export default function RequestQuoteModal({ open, onClose }: { open: boolean; on
             <input name="phone" type="tel" placeholder="Your Phone" required style={{ padding: 10, borderRadius: 6, border: '1px solid #ccc' }} />
             <select name="service" required style={{ padding: 10, borderRadius: 6, border: '1px solid #ccc' }}>
               <option value="">Select Service</option>
-              <option value="Washing">Washing</option>
+              <option value="Laundry service">Laundry Service</option>
               <option value="Dry Cleaning">Dry Cleaning</option>
-              <option value="Ironing">Ironing</option>
-              <option value="Other">Other</option>
+              <option value="Express Laundry">Express Laundry</option>
+              <option value="Shoe and bag Spa">Shoe and bag Spa</option>
+              <option value="Luxury Shoe Cleaning">Luxury Shoe Cleaning</option>
+              <option value="Commercial Laundry Service">Commercial Laundry Service</option>
+              <option value="Curtain Cleaning Service">Curtain Cleaning Service</option>s
+              <option value="Carpet Cleaning Service">Carpet Cleaning Service</option>
+              
+            <option value="Soft Toy Cleaning">Soft Toy Cleaning</option>
+
             </select>
             <textarea name="message" placeholder="Your Message" required style={{ padding: 10, borderRadius: 6, border: '1px solid #ccc', minHeight: 80 }} />
             <button type="submit" style={{ background: '#1e90ff', color: '#fff', padding: 12, borderRadius: 8, border: 'none', fontWeight: 'bold', cursor: 'pointer', marginTop: 8 }}>Send Request</button>

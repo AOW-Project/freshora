@@ -305,9 +305,17 @@ export default function HeroSection() {
               }}
             >
               <option value="" disabled>Select Service</option>
+              
+              <option value="Laundry service">Laundry Service</option>
               <option value="Dry Cleaning">Dry Cleaning</option>
-              <option value="Washing">Washing</option>
-              <option value="Ironing">Ironing</option>
+              <option value="Express Laundry">Express Laundry</option>
+              <option value="Shoe and bag Spa">Shoe and bag Spa</option>
+              <option value="Luxury Shoe Cleaning">Luxury Shoe Cleaning</option>
+              <option value="Commercial Laundry Service">Commercial Laundry Service</option>
+              <option value="Curtain Cleaning Service">Curtain Cleaning Service</option>s
+              <option value="Carpet Cleaning Service">Carpet Cleaning Service</option>
+              
+            <option value="Soft Toy Cleaning">Soft Toy Cleaning</option>
               <option value="All Services">All Services</option>
             </select>
             <textarea

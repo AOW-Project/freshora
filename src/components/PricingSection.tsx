@@ -101,15 +101,15 @@ export default function PricingSection() {
           <h2 style={{ fontSize: '2.8rem', fontWeight: 'bold', color: '#1e293b', marginBottom: '1rem' }}>
             Transparent Pricing for the Best Laundry Services
           </h2>
-          {/* ✅ FIX: Replaced ' with &apos; to fix the build error */}
+          {/*  FIX: Replaced ' with &apos; to fix the build error */}
           <p style={{ fontSize: '1.1rem', color: '#64748b', maxWidth: '800px', margin: '0 auto' }}>
-            At MM Laundry, we offer competitive pricing for our expert laundry service, dry cleaning, steam ironing, and household cleaning. Whether it&apos;s everyday wear, delicate fabrics, or bulky household items, we provide top-notch care at affordable rates.
+            At Freshora Laundry, we offer competitive pricing for our expert laundry service, dry cleaning, steam ironing, and household cleaning. Whether it&apos;s everyday wear, delicate fabrics, or bulky household items, we provide top-notch care at affordable rates.
           </p>
         </div>
 
         {/* Tab Buttons */}
         <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', marginBottom: '1rem', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '0.5rem', maxWidth: 'fit-content', margin: '0 auto' }}>
-          <TabButton tabName="gents" label="For Gentleman" />
+          <TabButton tabName="gents" label=" For Gentleman" />
           <TabButton tabName="ladies" label="For Ladies" />
           <TabButton tabName="household" label="Household Items" />
         </div>
@@ -197,6 +197,23 @@ export default function PricingSection() {
                 </button>
             </Link>
         </div>
+       {/* <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
+          <a href="/contact" style={{
+            background: '#1e90ff',
+            color: '#fff',
+            padding: '1rem 2rem',
+            borderRadius: 8,
+            border: 'none',
+            fontWeight: 'bold',
+            fontSize: '1.1rem',
+            textDecoration: 'none',
+            boxShadow: '0 2px 8px rgba(30,144,255,0.08)',
+            transition: 'background 0.2s',
+            display: 'inline-block',
+          }}>
+            Request a Quote
+          </a>
+        </div> */}
       </div>
     </section>
   );

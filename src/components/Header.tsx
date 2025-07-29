@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { FaGift, FaAngleDown } from "react-icons/fa";
-import { title } from "process";
 
 const RequestQuoteModal = dynamic(() => import("./RequestQuoteModal"), { ssr: false });
 
@@ -18,7 +17,6 @@ const serviceMenuItems = [
     { title: "Commercial Laundry Service", href: "/services/commercial-laundry-service" },
     { title: "Carpet Cleaning Service", href: "/services/carpet-cleaning-service" },
     { title: "Curtain Cleaning Service", href: "/services/curtain-cleaning-service" },
-    
     { title: "Soft Toy Cleaning Service", href: "/services/soft-toy-cleaning-service" },
 ];
 
@@ -34,18 +32,13 @@ export default function Header() {
   return (
     <header style={{ padding: '1rem 0', borderTop: '2px solid #e53954', borderBottom: '2px solid #e53954', background: '#fff', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 2rem' }}>
-        
-        {/* ✅ Updated Logo Section */}
         <Link href="/" style={{ display: "flex", alignItems: "center" }}>
-          {/* Using your new SVG logo. Adjusted size for better UI. */}
           <Image src="/F.png" alt="Freshora Logo" width={140} height={40} />
         </Link>
-
         <nav>
           <ul style={{ display: 'flex', gap: '2rem', listStyle: 'none', margin: 0, padding: 0, alignItems: 'center' }}>
             <li><Link href="/">Home</Link></li>
             <li><Link href="/our-story">Our Story</Link></li>
-            
             <li 
               style={{ position: 'relative' }}
               onMouseEnter={() => setIsServicesOpen(true)}
@@ -55,7 +48,6 @@ export default function Header() {
                 Services 
                 {hasMounted && isServicesOpen && <FaAngleDown />}
               </Link>
-              
               {hasMounted && isServicesOpen && (
                 <div style={{
                   position: 'absolute',
@@ -92,12 +84,10 @@ export default function Header() {
                 </div>
               )}
             </li>
-
             <li><Link href="/pricing" style={{ color: '#f59e0b', fontWeight: 'bold' }}>Pricing</Link></li>
             <li><Link href="/blogs">Blogs</Link></li>
             <li><Link href="/careers">Careers</Link></li>
             <li><Link href="/contact">Contact Us</Link></li>
-            
             <li>
               <button
                 onClick={() => setModalOpen(true)}
@@ -121,7 +111,6 @@ export default function Header() {
           </ul>
         </nav>
       </div>
-
       <RequestQuoteModal open={modalOpen} onClose={() => setModalOpen(false)} />
     </header>
   );
