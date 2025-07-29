@@ -1,31 +1,34 @@
-import { NextRequest, NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
+// src/app/api/send-quote/route.ts
 
-export async function POST(req: NextRequest) {
-  const { name, email, message } = await req.json();
+import { Resend } from 'resend';
+import { NextResponse } from 'next/server';
 
-  const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com', // e.g., smtp.gmail.com
-    port: 587,
-    secure: false,
-    auth: {
-      user: 'officialyashkamal@gmail.com',
-      pass: 'lvfs mjjb mkat ozhs',
-    },
-  });
+const resend = new Resend(process.env.RESEND_API_KEY);
 
+export async function POST(request: Request) {
   try {
-    await transporter.sendMail({
-      from: '"Website Contact" <officialyashkamal@gmail.com>',
-      to: 'officialyashkamal@gmail.com',
-      subject: `Contact from ${name}`,
-      text: message,
+    const body = await request.json();
+    const { name, email, phone, service, message } = body;
+
+    const data = await resend.emails.send({
+      from: 'Freshora Laundry <onboarding@resend.dev>', // Use your verified domain email
+      to: ['your-email@example.com'], // The email address you want to receive notifications
+      subject: `New Quote Request from ${name}`,
       replyTo: email,
+      html: `
+        <h2>New Quote Request</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>Service:</strong> ${service}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message}</p>
+      `,
     });
-    return NextResponse.json({ success: true });
+
+    return NextResponse.json(data);
   } catch (error) {
-    console.error("Email send error:", error); // Add this line
-    const errMsg = error instanceof Error ? error.message : String(error);
-    return NextResponse.json({ success: false, error: errMsg }, { status: 500 });
+    return NextResponse.json({ error });
   }
 }

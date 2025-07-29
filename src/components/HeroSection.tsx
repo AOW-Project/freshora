@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import React from 'react'
+import { useRouter } from 'next/navigation';
 import dynamic from "next/dynamic";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -31,9 +33,14 @@ export default function HeroSection() {
   const [modalOpen, setModalOpen] = useState(false);
   const [current, setCurrent] = useState(0);
   const slide = slides[current];
-
+  const router = useRouter();
   const nextSlide = () => setCurrent((c) => (c + 1) % slides.length);
   const prevSlide = () => setCurrent((c) => (c - 1 + slides.length) % slides.length);
+  // Function to handle form submission with correct TypeScript type
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    router.push('/thankYou');
+  };
 
   return (
     <section
@@ -56,7 +63,7 @@ export default function HeroSection() {
         style={{
           objectFit: 'fill',
           zIndex: 1,
-          filter: 'brightness(0.55) blur(1.5px)', // subtle blur for focus
+          // filter: 'brightness(0.55) blur(1.5px)', // subtle blur for focus
         }}
       />
       {/* Overlay gradient */}
@@ -183,12 +190,9 @@ export default function HeroSection() {
         >
           <h3 style={{ color: '#2563eb', marginBottom: 16 }}>Quick Enquiry</h3>
           <form
-            onSubmit={e => {
-              e.preventDefault();
-              alert('Form submitted!');
-            }}
-            style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 12 }}
-          >
+  onSubmit={handleFormSubmit}
+  style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 12 }}
+>
             <input
               type="text"
               placeholder="Your Name"
@@ -305,7 +309,7 @@ export default function HeroSection() {
               }}
             >
               <option value="" disabled>Select Service</option>
-              
+              <option value="">Select Service</option>
               <option value="Laundry service">Laundry Service</option>
               <option value="Dry Cleaning">Dry Cleaning</option>
               <option value="Express Laundry">Express Laundry</option>

@@ -33,7 +33,7 @@ export default function Header() {
     <header style={{ padding: '1rem 0', borderTop: '2px solid #e53954', borderBottom: '2px solid #e53954', background: '#fff', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 2rem' }}>
         <Link href="/" style={{ display: "flex", alignItems: "center" }}>
-          <Image src="/F.png" alt="Freshora Logo" width={140} height={40} />
+          <Image src="/F.png" alt="Freshora Logo" width={110} height={40} />
         </Link>
         <nav>
           <ul style={{ display: 'flex', gap: '2rem', listStyle: 'none', margin: 0, padding: 0, alignItems: 'center' }}>
@@ -86,7 +86,7 @@ export default function Header() {
             </li>
             <li><Link href="/pricing" style={{ color: '#f59e0b', fontWeight: 'bold' }}>Pricing</Link></li>
             <li><Link href="/blogs">Blogs</Link></li>
-            <li><Link href="/careers">Careers</Link></li>
+            {/* <li><Link href="/careers">Careers</Link></li> */}
             <li><Link href="/contact">Contact Us</Link></li>
             <li>
               <button
