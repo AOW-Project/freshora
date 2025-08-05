@@ -1,4 +1,4 @@
-// src/app/api/send-quote/route.ts
+{/*
 
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
@@ -18,7 +18,7 @@ export async function POST(request: Request) {
       html: `
         <h2>New Quote Request</h2>
         <p><strong>Name:</strong> ${name}</p>
-        
+
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Phone:</strong> ${phone}</p>
         <p><strong>Service:</strong> ${service}</p>
@@ -31,4 +31,4 @@ export async function POST(request: Request) {
   } catch (error) {
     return NextResponse.json({ error });
   }
-}
+} */}

@@ -1,7 +1,7 @@
 'use client';
 
 import { image } from 'framer-motion/client';
-import { Shirt, Wind, Sparkles, Check, ShoppingBag, Truck } from 'lucide-react';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { title } from 'process';
