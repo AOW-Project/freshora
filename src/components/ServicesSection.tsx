@@ -1,122 +1,157 @@
 'use client';
 
-import { image } from 'framer-motion/client';
-
 import Link from 'next/link';
 import Image from 'next/image';
-import { title } from 'process';
 
 const servicesList = [
   {
-    image: '/sweatshirts-and-hoodies-hanging-on-hangers-in-the-2025-02-24-23-50-53-utc.jpg',
-    title: 'Laundry Service',
-    description: 'Perfect for everyday laundry. We wash, dry, and fold your clothes with care.',
-    href: '/services/laundry-service',
+    image: '/images/imgbox-inner__img01.jpg',
+    title: 'Carpet Cleaning',
+    description: 'To keep carpet at peak performance, we recommend professional deep cleaning your carpet every 12 to 18 months.',
+    href: '/services/carpet-cleaning',
+    icon: '🧹'
   },
   {
-    image: '/senior-washwoman-in-the-laundry-2025-03-13-03-42-00-utc.jpg',
-    title: 'Dry Cleaning Service',
-    description: 'Expert care for your delicate garments, ensuring they look their best.',
-    href: '/services/dry-cleaning-service',
+    image: '/images/imgbox-inner__img02.jpg',
+    title: 'Laundry Services',
+    description: 'Let us pick up your dirty laundry, sort it, pre-treat stains, wash, dry, fold and deliver back to you in one neat, easy package.',
+    href: '/services/laundry-services',
+    icon: '👕'
   },
   {
-    image: '/cropped-view-of-woman-in-grey-shirt-and-jeans-putt-2024-11-17-21-04-59-utc.jpg',
-    title: 'Express Laundry Services',
-    description: 'Need your laundry done in a hurry? Our express service is fast and reliable.',
-    href: '/services/express-laundry-services',
+    image: '/images/imgbox-inner__img03.jpg',
+    title: 'Dry Cleaning',
+    description: 'Professional dry cleaning services for your delicate garments, ensuring they look their best and last longer.',
+    href: '/services/dry-cleaning',
+    icon: '👔'
   },
   {
-    image: '/logo.png',
-    title: 'Bag & Shoe Spa',
-    description: 'Restore your favorite bags and shoes with our professional spa service.',
-    href: '/services/bag-shoe-spa',
+    image: '/images/imgbox-inner__img01.jpg',
+    title: 'Express Service',
+    description: 'Need your clothes cleaned in a hurry? Our express service gets your laundry back to you quickly without compromising quality.',
+    href: '/services/express-service',
+    icon: '⚡'
   },
   {
-    image: '/young-beautiful-indian-muslim-businesswoman-with-a-2025-01-29-03-34-36-utc.jpg',
-    title:'Luxury shoe cleaning service',
-    description:'We offer a wide range of luxury shoe cleaning services to meet your needs, delivered with the highest quality and care.',
-    href:'/services/luxury-shoe-cleaning-service',
+    image: '/images/imgbox-inner__img02.jpg',
+    title: 'Shoe & Bag Care',
+    description: 'Restore your favorite shoes and bags with our professional cleaning and restoration services.',
+    href: '/services/shoe-bag-care',
+    icon: '👠'
   },
   {
-    image: '/female-doing-laundry-at-laundromat-2024-10-12-00-02-41-utc.jpg',
-    title: 'Commercial Laundry Service',
-    description: 'Reliable and efficient laundry solutions for businesses of all sizes.',
-    href: '/services/commercial-laundry-service',
-  },
-  {
-    image: '/logo.png',
-    title: 'Carpet Cleaning Service',
-    description: 'We remove dirt, stains, and allergens from your carpets, leaving them fresh and revitalized.',
-    href: '/services/carpet-cleaning-service',
-  },
-  {
-    image: '/logo.png',
-    title: 'Curtain Cleaning Service',
-    description: 'Gentle cleaning for your curtains, removing dust, stains, and odors.',
-    href: '/services/curtain-cleaning-service',
-  },
- 
-  {
-    image: '/logo.png',
-    title: 'Soft Toy Cleaning Service',
-    description: 'Gentle, child-friendly cleaning for your children’s favorite soft toys.',
-    href: '/services/soft-toy-cleaning-service',
-  },
+    image: '/images/imgbox-inner__img03.jpg',
+    title: 'Commercial Laundry',
+    description: 'Reliable and efficient laundry solutions for businesses, hotels, and commercial establishments.',
+    href: '/services/commercial-laundry',
+    icon: '🏢'
+  }
 ];
 
 export default function ServicesSection() {
   return (
-    <section id="services" style={{ padding: '4rem 2rem', backgroundColor: '#f8f9fa' }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', textAlign: 'center' }}>
-        <h2 style={{ fontSize: '2.8rem', fontWeight: 'bold', color: '#1e293b', marginBottom: '1rem' }}>
-          Our Services
-        </h2>
-        <p style={{ fontSize: '1.1rem', color: '#64748b', maxWidth: '600px', margin: '0 auto 2.5rem auto' }}>
-          We offer a wide range of laundry services to meet your needs, delivered with the highest quality and care.
-        </p>
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
-          gap: '2rem' 
-        }}>
-          {servicesList.map((service, index) => (
-            <div key={index} style={{
-              background: '#fff',
-              padding: '2rem',
-              borderRadius: '12px',
-              textAlign: 'left',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)',
-              border: '1px solid #e2e8f0',
-              transition: 'transform 0.3s, box-shadow 0.3s',
-            }}
-            onMouseOver={e => {
-                e.currentTarget.style.transform = 'translateY(-5px)';
-                e.currentTarget.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.1)';
-            }}
-            onMouseOut={e => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.05)';
-            }}
-            >
-              <div style={{ marginBottom: '1rem', width: '100%', height: '180px', position: 'relative', borderRadius: '8px', overflow: 'hidden' }}>
-                <Image src={service.image} alt={service.title} fill style={{ objectFit: 'cover' }} />
-              </div>
-              <h3 style={{ fontSize: '1.5rem', fontWeight: '600', color: '#1e293b', marginBottom: '0.5rem' }}>
-                {service.title}
-              </h3>
-              <p style={{ fontSize: '1rem', color: '#475569', lineHeight: 1.6, marginBottom: '1.5rem', minHeight: '80px' }}>
-                {service.description}
-              </p>
-              <Link href={service.href} passHref>
-                <span style={{ color: '#2563eb', fontWeight: '600', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-                  View Details
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                </span>
-              </Link>
+    <div className="lazyload bg-top-right" style={{ backgroundImage: 'url(/images/wrapper02.png)', backgroundSize: 'cover', backgroundPosition: 'top right' }}>
+      <div className="section-indent no-margin">
+        <div className="container-fluid">
+          <div className="title-block text-center">
+            <div className="title-block__label" style={{ color: '#ff6b35', fontSize: '1.1rem', marginBottom: '1rem' }}>
+              [ Our Services ]
             </div>
-          ))}
+            <h4 className="title-block__title" style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '3rem', color: '#333' }}>
+              Dry Cleaning & Laundry,<br />Free Delivery
+            </h4>
+          </div>
+          
+          <div className="slick-default slick-arrow-align imgbox-inner__wrapper" style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+            gap: '2rem',
+            maxWidth: '1200px',
+            margin: '0 auto',
+            padding: '0 1rem'
+          }}>
+            {servicesList.map((service, index) => (
+              <div key={index} className="tt-item">
+                <Link href={service.href} className="imgbox-inner" style={{
+                  display: 'block',
+                  textDecoration: 'none',
+                  color: 'inherit',
+                  background: '#fff',
+                  borderRadius: '10px',
+                  overflow: 'hidden',
+                  boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
+                  transition: 'transform 0.3s ease, box-shadow 0.3s ease'
+                }}
+                onMouseOver={e => {
+                  e.currentTarget.style.transform = 'translateY(-5px)';
+                  e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,0,0,0.15)';
+                }}
+                onMouseOut={e => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)';
+                }}>
+                  <div className="imgbox-inner__img" style={{ position: 'relative', height: '250px', overflow: 'hidden' }}>
+                    <Image 
+                      src={service.image} 
+                      alt={service.title} 
+                      fill
+                      style={{ objectFit: 'cover' }}
+                    />
+                  </div>
+                  <div className="imgbox-inner__description" style={{ padding: '2rem' }}>
+                    <div className="imgbox-inner__row" style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+                      <div className="imgbox-inner__icon" style={{ 
+                        fontSize: '3rem', 
+                        color: '#ff6b35',
+                        flexShrink: 0
+                      }}>
+                        {service.icon}
+                      </div>
+                      <div className="imgbox-inner__content">
+                        <h4 className="imgbox-inner__title" style={{ 
+                          fontSize: '1.5rem', 
+                          fontWeight: 'bold', 
+                          marginBottom: '1rem',
+                          color: '#333'
+                        }}>
+                          {service.title}
+                        </h4>
+                        <p style={{ 
+                          fontSize: '1rem', 
+                          lineHeight: '1.6',
+                          color: '#666',
+                          margin: 0
+                        }}>
+                          {service.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            ))}
+          </div>
+          
+          {/* View All Services Button */}
+          <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+            <Link href="/services" style={{
+              display: 'inline-block',
+              background: '#ff6b35',
+              color: '#fff',
+              padding: '1rem 2rem',
+              borderRadius: '5px',
+              textDecoration: 'none',
+              fontWeight: 'bold',
+              fontSize: '1.1rem',
+              transition: 'background 0.3s ease'
+            }}
+            onMouseOver={e => e.currentTarget.style.background = '#e55a2b'}
+            onMouseOut={e => e.currentTarget.style.background = '#ff6b35'}>
+              View All Services
+            </Link>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

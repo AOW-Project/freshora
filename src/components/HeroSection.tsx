@@ -1,382 +1,126 @@
 'use client';
 
 import Image from "next/image";
-import { useState } from "react";
-import React from 'react'
-import { useRouter } from 'next/navigation';
-import dynamic from "next/dynamic";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useEffect } from "react";
+import Link from "next/link";
 
-const RequestQuoteModal = dynamic(() => import("./RequestQuoteModal"), { ssr: false });
 
+// The slides array with the full content for the carousel
 const slides = [
   {
-    image: "/female-doing-laundry-at-laundromat-2024-10-12-00-02-41-utc.jpg",
-    headline: "Dirty Wash Cleaning & Laundry Services.",
-    subheadline: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.",
-    badge: true,
+    image: "/Assets/mainslide01-01.webp",
+    alt: "A woman smiling while holding a basket of fresh laundry",
+    subtitle: "Free Pickup & Delivery",
+    title: "Professional Laundry & Dry Cleaning",
+    description: "We are professionals in the laundry and dry cleaning business, which means we always stay up to date on the latest technologies, cleaning methods, and solutions for dealing with stains or delicate fabrics.",
+    buttonText: "Schedule a Pickup",
+    buttonLink: "#"
   },
   {
-    image: "/senior-washwoman-in-the-laundry-2025-03-13-03-42-00-utc.jpg",
-    headline: "Fast, Affordable, and Convenient.",
-    subheadline: "We pick up, clean, and deliver your laundry with care. Book your first order and get 20% cashback!",
-    badge: true,
+    image: "/Assets/mainslide02-01-md.webp", 
+    alt: "A laundry professional handing clean clothes to a customer",
+    subtitle: "25+ Years of Experience",
+    title: "Quality Care For Your Clothes",
+    description: "We maintain the highest standards of business integrity by following local and national regulations and environmental safety rules. We are passionate about the way you think about laundry!",
+    buttonText: "Our Services",
+    buttonLink: "/services"
   },
-  { image:"/woman-in-the-laundry-shop-2025-01-29-04-35-51-utc.jpg",
-    headline: "Your Laundry, Our Priority.",
-    subheadline: "Experience the best in laundry services with our expert team. Satisfaction guaranteed!",
-    badge: true,
+  {
+    image: "/Assets/mainslide01-02-md.webp", 
+    alt: "A woman professionally steaming a blue shirt",
+    subtitle: "Perfectly Pressed, Every Time",
+    title: "Expert Ironing Services",
+    description: "Our professional ironing service ensures your garments are wrinkle-free, crisp, and ready to wear for any occasion. We handle everything with precision and care.",
+    buttonText: "View Pricing",
+    buttonLink: "/pricing"
+  },
+  {
+    image: "/Assets/mainslide02-02-md.webp", 
+    alt: "A happy customer receiving their clean clothes",
+    subtitle: "Your Happiness, Guaranteed",
+    title: "100% Customer Satisfaction",
+    description: "We pride ourselves on delivering a service that exceeds expectations. If you're not completely satisfied with the results, we promise to make it right.",
+    buttonText: "Read Testimonials",
+    buttonLink: "/testimonials"
   }
 ];
 
 export default function HeroSection() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [current, setCurrent] = useState(0);
-  const slide = slides[current];
-  const router = useRouter();
-  const nextSlide = () => setCurrent((c) => (c + 1) % slides.length);
-  const prevSlide = () => setCurrent((c) => (c - 1 + slides.length) % slides.length);
-  // Function to handle form submission with correct TypeScript type
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    router.push('/thankYou');
-  };
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [preloaderVisible, setPreloaderVisible] = useState(true);
+
+  useEffect(() => {
+    const preloaderTimer = setTimeout(() => setPreloaderVisible(false), 500);
+    const slideInterval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 2000); // Slide changes every 5 seconds
+
+    return () => {
+      clearTimeout(preloaderTimer);
+      clearInterval(slideInterval);
+    };
+  }, []);
 
   return (
-    <section
-      style={{
-        position: 'relative',
-        minHeight: 540,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 0,
-        overflow: 'hidden',
-        borderBottom: '4px solid var(--primary)',
-      }}
-    >
-      {/* Background image */}
-      <Image
-        src={slide.image}
-        alt="Laundry Hero"
-        fill
-        style={{
-          objectFit: 'fill',
-          zIndex: 1,
-          // filter: 'brightness(0.55) blur(1.5px)', // subtle blur for focus
-        }}
-      />
-      {/* Overlay gradient */}
-    { /* <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          zIndex: 2,
-          background: 'linear-gradient(90deg, #1e293bcc 40%, #0000 100%)',
-        }}
-      />*/}
-      {/* Overlay content */}
-      <div
-        style={{
-          position: 'relative',
-          zIndex: 3,
-          width: '100%',
-          maxWidth: 1400, // Increased width
-          margin: '0 auto',
-          display: 'flex',
-          alignItems: 'flex-start',
-          justifyContent: 'space-between',
-          padding: '0 3rem',
-          minHeight: 540,
-          gap: 48,
-        }}
-      >
-        {/* Main text content */}
-        <div
-          style={{
-            maxWidth: 600,
-            textAlign: 'left',
-            color: '#fff',
-            textShadow: '0 2px 8px #000a',
-            marginTop: 40,
-          }}
-        >
-          <h1
-            style={{
-              fontSize: '3.2rem',
-              fontWeight: 'bold',
-              marginBottom: '1.2rem',
-              color: '#fff',
-            }}
+    <section id="js-mainSlider" className="relative w-full h-screen min-h-[700px] bg-gray-800 overflow-hidden">
+
+      {/* Preloader */}
+      {preloaderVisible && (
+        <div className="absolute inset-0 flex justify-center items-center bg-white z-[100] text-4xl font-bold text-gray-800">
+          <span className="text-cyan-500">Freshora</span>Laundry
+        </div>
+      )}
+
+      {/* Full-width Carousel Container */}
+      <div className="absolute inset-0 w-full h-full">
+        {slides.map((slide, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100 z-10' : 'opacity-0'}`}
           >
-            {slide.headline}
-          </h1>
-          <p
-            style={{
-              fontSize: '1.25rem',
-              marginBottom: '2rem',
-              color: '#f3f3f3',
-            }}
-          >
-            {slide.subheadline}
-          </p>
-          <div style={{ display: 'flex', gap: 18 }}>
-            <a
-              href="#services"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                background: '#16a34a',
-                color: '#fff',
-                padding: '1rem 2rem',
-                borderRadius: 8,
-                fontWeight: 'bold',
-                fontSize: '1.1rem',
-                boxShadow: '0 2px 8px #16a34a33',
-                border: 'none',
-                transition: 'background 0.2s',
-                cursor: 'pointer',
-              }}
-              onMouseOver={e => (e.currentTarget.style.background = '#15803d')}
-              onMouseOut={e => (e.currentTarget.style.background = '#16a34a')}
-            >
-              <span style={{ marginRight: 8, fontSize: 20 }}>
-                {/* SVG icon here */}
-              </span>
-              LEARN MORE
-            </a>
-            <button
-              onClick={() => setModalOpen(true)}
-              style={{
-                background: 'transparent',
-                color: '#fff',
-                padding: '1rem 2rem',
-                borderRadius: 8,
-                border: '2px solid #fff',
-                fontWeight: 'bold',
-                fontSize: '1.1rem',
-                cursor: 'pointer',
-                transition: 'background 0.2s, color 0.2s',
-                boxShadow: '0 2px 8px #fff2',
-              }}
-              onMouseOver={e => {
-                e.currentTarget.style.background = '#fff';
-                e.currentTarget.style.color = '#1e293b';
-              }}
-              onMouseOut={e => {
-                e.currentTarget.style.background = 'transparent';
-                e.currentTarget.style.color = '#fff';
-              }}
-            >
-              REQUEST A QUOTE!
-            </button>
+            <Image
+              src={slide.image}
+              alt={slide.alt}
+              fill
+              priority={index === 0}
+              className="object-fill"
+            />
+            {/* Darker gradient for better contrast */}
+       {  /*   <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />*/ }s
           </div>
-        </div>
-        {/* Enquiry form (already improved, just ensure minWidth: 350 or 400) */}
-        <div
-          style={{
-            position: 'relative',
-            background: 'rgba(255,255,255,0.95)',
-            borderRadius: 16,
-            boxShadow: '0 4px 24px #0002',
-            padding: '2rem 1.5rem',
-            minWidth: 350,
-            maxWidth: 400,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            marginTop: 40,
-          }}
-        >
-          <h3 style={{ color: '#2563eb', marginBottom: 16 }}>Quick Enquiry</h3>
-          <form
-  onSubmit={handleFormSubmit}
-  style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 12 }}
->
-            <input
-              type="text"
-              placeholder="Your Name"
-              required
-              style={{
-                padding: '0.5rem',
-                borderRadius: 8,
-                border: '2px solid #e0e7ef',
-                marginBottom: 8,
-                width: '100%',
-                fontSize: '1rem',
-                outline: 'none',
-                transition: 'border 0.2s, box-shadow 0.2s',
-              }}
-              onFocus={e => {
-                e.currentTarget.style.border = '2px solid #2563eb';
-                e.currentTarget.style.boxShadow = '0 0 0 2px #2563eb22';
-              }}
-              onBlur={e => {
-                e.currentTarget.style.border = '2px solid #e0e7ef';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
-            />
-            <input
-              type="email"
-              placeholder="Email"
-              required
-              style={{
-                padding: '0.5rem',
-                borderRadius: 8,
-                border: '2px solid #e0e7ef',
-                marginBottom: 8,
-                width: '100%',
-                fontSize: '1rem',
-                outline: 'none',
-                transition: 'border 0.2s, box-shadow 0.2s',
-              }}
-              onFocus={e => {
-                e.currentTarget.style.border = '2px solid #2563eb';
-                e.currentTarget.style.boxShadow = '0 0 0 2px #2563eb22';
-              }}
-              onBlur={e => {
-                e.currentTarget.style.border = '2px solid #e0e7ef';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
-            />
-            <input
-              type="tel"
-              placeholder="Contact Number"
-              required
-              style={{
-                padding: '0.5rem',
-                borderRadius: 8,
-                border: '2px solid #e0e7ef',
-                marginBottom: 8,
-                width: '100%',
-                fontSize: '1rem',
-                outline: 'none',
-                transition: 'border 0.2s, box-shadow 0.2s',
-              }}
-              onFocus={e => {
-                e.currentTarget.style.border = '2px solid #2563eb';
-                e.currentTarget.style.boxShadow = '0 0 0 2px #2563eb22';
-              }}
-              onBlur={e => {
-                e.currentTarget.style.border = '2px solid #e0e7ef';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
-            />
-            <input
-              type="text"
-              placeholder="Address"
-              required
-              style={{
-                padding: '0.5rem',
-                borderRadius: 8,
-                border: '2px solid #e0e7ef',
-                marginBottom: 8,
-                width: '100%',
-                fontSize: '1rem',
-                outline: 'none',
-                transition: 'border 0.2s, box-shadow 0.2s',
-              }}
-              onFocus={e => {
-                e.currentTarget.style.border = '2px solid #2563eb';
-                e.currentTarget.style.boxShadow = '0 0 0 2px #2563eb22';
-              }}
-              onBlur={e => {
-                e.currentTarget.style.border = '2px solid #e0e7ef';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
-            />
-            <select
-              required
-              defaultValue=""
-              style={{
-                padding: '0.5rem',
-                borderRadius: 8,
-                border: '2px solid #e0e7ef',
-                marginBottom: 8,
-                width: '100%',
-                color: '#333',
-                fontSize: '1rem',
-                outline: 'none',
-                transition: 'border 0.2s, box-shadow 0.2s',
-              }}
-              onFocus={e => {
-                e.currentTarget.style.border = '2px solid #2563eb';
-                e.currentTarget.style.boxShadow = '0 0 0 2px #2563eb22';
-              }}
-              onBlur={e => {
-                e.currentTarget.style.border = '2px solid #e0e7ef';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
-            >
-              <option value="" disabled>Select Service</option>
-              <option value="">Select Service</option>
-              <option value="Laundry service">Laundry Service</option>
-              <option value="Dry Cleaning">Dry Cleaning</option>
-              <option value="Express Laundry">Express Laundry</option>
-              <option value="Shoe and bag Spa">Shoe and bag Spa</option>
-              <option value="Luxury Shoe Cleaning">Luxury Shoe Cleaning</option>
-              <option value="Commercial Laundry Service">Commercial Laundry Service</option>
-              <option value="Curtain Cleaning Service">Curtain Cleaning Service</option>s
-              <option value="Carpet Cleaning Service">Carpet Cleaning Service</option>
-              
-            <option value="Soft Toy Cleaning">Soft Toy Cleaning</option>
-              <option value="All Services">All Services</option>
-            </select>
-            <textarea
-              placeholder="Message"
-              rows={3}
-              style={{
-                padding: '0.5rem',
-                borderRadius: 8,
-                border: '2px solid #e0e7ef',
-                marginBottom: 8,
-                width: '100%',
-                resize: 'vertical',
-                fontSize: '1rem',
-                outline: 'none',
-                transition: 'border 0.2s, box-shadow 0.2s',
-              }}
-              onFocus={e => {
-                e.currentTarget.style.border = '2px solid #2563eb';
-                e.currentTarget.style.boxShadow = '0 0 0 2px #2563eb22';
-              }}
-              onBlur={e => {
-                e.currentTarget.style.border = '2px solid #e0e7ef';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
-            />
-            <button
-              type="submit"
-              style={{
-                background: '#2563eb',
-                color: '#fff',
-                border: 'none',
-                borderRadius: 6,
-                padding: '0.75rem',
-                fontWeight: 'bold',
-                cursor: 'pointer',
-                marginTop: 8,
-              }}
-            >
-              Submit
-            </button>
-          </form>
-        </div>
-      </div>
-      {/* Slider arrows with Lucide icons */}
-      <button onClick={prevSlide} style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', zIndex: 5, background: '#fff', border: 'none', borderRadius: '50%', width: 60, height: 60, boxShadow: '0 2px 8px #0002', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, cursor: 'pointer', opacity: 0.85 }} aria-label="Previous Slide">
-        <ChevronLeft size={32} color="#1e293b" />
-      </button>
-      <button onClick={nextSlide} style={{ position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)', zIndex: 5, background: '#fff', border: 'none', borderRadius: '50%', width: 60, height: 60, boxShadow: '0 2px 8px #0002', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, cursor: 'pointer', opacity: 0.85 }} aria-label="Next Slide">
-        <ChevronRight size={32} color="#1e293b" />
-      </button>
-      {/* Slide indicators */}
-      <div style={{ position: 'absolute', left: '50%', bottom: 32, transform: 'translateX(-50%)', display: 'flex', gap: 10, zIndex: 6 }}>
-        {slides.map((_, i) => (
-          <span key={i} style={{ width: 12, height: 12, borderRadius: '50%', background: i === current ? '#16a34a' : '#fff', border: '2px solid #16a34a', display: 'inline-block', transition: 'background 0.2s' }} />
         ))}
       </div>
-      <RequestQuoteModal open={modalOpen} onClose={() => setModalOpen(false)} />
+
+      {/* Content Wrapper */}
+      <div className="relative z-20 flex h-full items-center max-w-7xl mx-auto px-8 w-full">
+        
+        {/* Dynamic Text Content with Staggered Animations */}
+        <div className="max-w-2xl text-white text-center lg:text-left">
+            <p className={`font-semibold text-lg md:text-xl mb-4 text-cyan-400 transition-all duration-700 ease-out ${currentSlide !== null ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-5'}`} style={{ transitionDelay: '200ms' }}>
+                {slides[currentSlide].subtitle}
+            </p>
+            <h2 className={`font-bold text-4xl md:text-6xl leading-tight mb-6 transition-all duration-700 ease-out ${currentSlide !== null ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-5'}`} style={{ transitionDelay: '400ms' }}>
+                {slides[currentSlide].title}
+            </h2>
+            <p className={`text-base md:text-lg leading-relaxed mx-auto lg:mx-0 mb-8 max-w-xl transition-all duration-700 ease-out ${currentSlide !== null ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-5'}`} style={{ transitionDelay: '600ms' }}>
+                {slides[currentSlide].description}
+            </p>
+            <div className={`transition-all duration-700 ease-out ${currentSlide !== null ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-5'}`} style={{ transitionDelay: '800ms' }}>
+                <Link
+                    href={slides[currentSlide].buttonLink}
+                    className="group relative inline-block py-3.5 px-9 bg-cyan-500 text-white font-bold no-underline border-2 border-cyan-500 overflow-hidden transition-colors duration-400 hover:bg-transparent hover:text-cyan-400"
+                >
+                    <span className="block transition-transform duration-500 ease-[cubic-bezier(0.7,0,0.2,1)] group-hover:-translate-y-full">
+                    {slides[currentSlide].buttonText}
+                    </span>
+                    <div className="absolute top-full left-0 w-full py-3.5 transition-transform duration-500 ease-[cubic-bezier(0.7,0,0.2,1)] group-hover:-translate-y-full">
+                    {slides[currentSlide].buttonText}
+                    </div>
+                </Link>
+            </div>
+        </div>
+      </div>
+
     </section>
   );
-} 
+}

@@ -2,67 +2,129 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { CheckCircle2 } from 'lucide-react';
-
-const storyPoints = [
-  { text: "Eco-Friendly Cleaning" },
-  { text: "100% Satisfaction Guarantee" },
-  { text: "Fast & High-Quality Service" },
-];
+import { Phone, Clock, CreditCard, Leaf } from 'lucide-react';
 
 export default function AboutSection() {
   return (
-    <section id="about" style={{ padding: '4rem 2rem', background: '#fff' }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', alignItems: 'center', gap: '4rem', flexWrap: 'wrap' }}>
+    <div className="bg-top-left bg-cover bg-no-repeat py-16 lg:py-24" 
+         style={{ backgroundImage: "url('/images/wrapper01.png')" }}>
+      <div className="container mx-auto px-4 xl:px-8">
         
-        {/* Image Section */}
-        <div style={{ flex: 1, minWidth: 300 }}>
-          <Image 
-            src="/young-beautiful-indian-muslim-businesswoman-with-a-2025-01-29-03-34-36-utc.jpg" 
-            alt="Freshora Laundry Service" 
-            width={600} 
-            height={400} 
-            style={{ borderRadius: 12, width: '100%', height: 'auto' }} 
-          />
-        </div>
-
-        {/* Text Content Section */}
-        <div style={{ flex: 1.5, minWidth: 300 }}>
-          <h2 style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#1e293b', marginBottom: '1rem' }}>
-            Our Story
-          </h2>
-          <p style={{ fontSize: '1.1rem', color: '#475569', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-            Freshora was born from a simple idea: to provide a laundry service that is not only professional and reliable but also cares for the environment. We believe in combining cutting-edge technology with eco-friendly practices to deliver exceptional results for our customers.
-          </p>
-          <div style={{ marginBottom: '2rem' }}>
-            {storyPoints.map((point, index) => (
-              <div key={index} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
-                <CheckCircle2 size={22} color="#16a34a" />
-                <span style={{ fontSize: '1.1rem', color: '#334155' }}>{point.text}</span>
+        {/* Main About Box */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+          
+          {/* Left Side Image */}
+          <div className="relative hidden lg:block">
+            <div className="relative">
+              <Image 
+                src="/Assets/img01.jpg"
+                alt="Laundry Experience" 
+                width={600} 
+                height={550} 
+                className="w-full h-auto rounded-lg shadow-xl" 
+              />
+              <Image 
+                className="absolute -top-5 -right-10 w-24 h-auto opacity-80" 
+                src="/images/arrow-img-right.png" 
+                alt="Arrow" 
+                width={100} 
+                height={100}
+              />
+              <div className="absolute -bottom-8 -left-8 bg-white rounded-lg p-6 shadow-2xl text-center">
+                <div className="text-5xl font-bold text-cyan-500">25</div>
+                <div className="text-sm text-gray-700 leading-tight">
+                  years of <br /> experience
+                </div>
               </div>
-            ))}
+            </div>
           </div>
-          <Link href="/contact" passHref>
-            <button style={{ 
-              background: '#1e90ff', 
-              color: '#fff', 
-              padding: '0.9rem 2.2rem', 
-              borderRadius: 8, 
-              border: 'none', 
-              fontWeight: 'bold', 
-              fontSize: '1rem', 
-              cursor: 'pointer',
-              transition: 'background 0.3s'
-            }}
-            onMouseOver={e => e.currentTarget.style.background = '#0073e6'}
-            onMouseOut={e => e.currentTarget.style.background = '#1e90ff'}
-            >
-              Learn More
-            </button>
-          </Link>
-        </div>
 
+          {/* Right Side Content */}
+          <div className="space-y-6">
+            <div>
+              <div className="text-cyan-500 font-semibold text-lg mb-2">
+                More than 25 Years of Experience
+              </div>
+              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+                We are Passionate About Laundry
+              </h2>
+            </div>
+
+            <p className="text-lg leading-relaxed text-gray-600">
+              We are professionals in the laundry and dry cleaning business, which means we always stay up to date on the latest technologies, cleaning methods, and solutions for dealing with stains or delicate fabrics. Plus, we maintain the highest standards of business integrity by following local and national regulations and environmental safety rules. We are passionate about the way you think about laundry!
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+              <ul className="space-y-3">
+                <li className="flex items-center text-gray-700"><div className="w-2 h-2 bg-cyan-500 rounded-full mr-3"></div>100% Customer Satisfaction</li>
+                <li className="flex items-center text-gray-700"><div className="w-2 h-2 bg-cyan-500 rounded-full mr-3"></div>Free Collection & Delivery</li>
+                <li className="flex items-center text-gray-700"><div className="w-2 h-2 bg-cyan-500 rounded-full mr-3"></div>Affordable Prices</li>
+                <li className="flex items-center text-gray-700"><div className="w-2 h-2 bg-cyan-500 rounded-full mr-3"></div>Best Quality</li>
+              </ul>
+              <div className="flex items-center justify-center lg:justify-start">
+                <a href="tel:1(800)765-43-21" className="flex items-center space-x-4 bg-white/80 backdrop-blur-sm rounded-lg p-4 hover:bg-white transition-colors w-full max-w-xs shadow-md">
+                  <div className="w-12 h-12 bg-cyan-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-gray-800 text-left">Call for Quality Services</div>
+                    <div className="text-cyan-600 font-bold text-lg text-left">+971 50 925 9667</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Added Info Section - Floating Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-24">
+            <a href="/contact" className="group bg-white rounded-lg p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 block">
+              <div className="flex items-start space-x-4">
+                <div className="w-16 h-16 bg-cyan-100 rounded-full flex items-center justify-center group-hover:bg-cyan-500 transition-colors duration-300">
+                  <Clock className="w-8 h-8 text-cyan-500 group-hover:text-white transition-colors duration-300" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-bold text-xl text-gray-800 mb-2">
+                    <span className="group-hover:text-cyan-500 transition-colors">Save Time & Money</span>
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    No more wasted time driving to the laundromats, we pickup and deliver for free!
+                  </p>
+                </div>
+              </div>
+            </a>
+            <a href="/contact" className="group bg-white rounded-lg p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 block">
+              <div className="flex items-start space-x-4">
+                <div className="w-16 h-16 bg-cyan-100 rounded-full flex items-center justify-center group-hover:bg-cyan-500 transition-colors duration-300">
+                  <CreditCard className="w-8 h-8 text-cyan-500 group-hover:text-white transition-colors duration-300" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-bold text-xl text-gray-800 mb-2">
+                    <span className="group-hover:text-cyan-500 transition-colors">Pay Online in Seconds</span>
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    Manage your ProLaundry account and billing online from your smartphone or computer.
+                  </p>
+                </div>
+              </div>
+            </a>
+            <a href="#" className="group bg-white rounded-lg p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 block">
+              <div className="flex items-start space-x-4">
+                <div className="w-16 h-16 bg-cyan-100 rounded-full flex items-center justify-center group-hover:bg-cyan-500 transition-colors duration-300">
+                  <Leaf className="w-8 h-8 text-cyan-500 group-hover:text-white transition-colors duration-300" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-bold text-xl text-gray-800 mb-2">
+                    <span className="group-hover:text-cyan-500 transition-colors">Eco-Friendly</span>
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    We use safe and clean perc-free solvents, so you, and the Earth, can look good.
+                  </p>
+                </div>
+              </div>
+            </a>
+        </div>
       </div>
-    </section>
+    </div>
   );
 }
